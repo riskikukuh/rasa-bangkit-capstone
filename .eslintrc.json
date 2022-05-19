@@ -11,5 +11,17 @@
         "ecmaVersion": "latest"
     },
     "rules": {
+        "linebreak-style": ["error", "windows"],
+        "object-curly-newline": "off",
+        "no-underscore-dangle": "off"
+        // "linebreak-style": ["error", "windows"],
+        // "indent": "off",
+        // "no-underscore-dangle": "off",
+        // "eol-last": 0,
+        // "trailing-comma": false,
+        // "no-multiple-empty-lines": ["error", {
+        //     "max": 1,
+        //     "maxEOF": 0
+        // }]
     }
 }

@@ -1,8 +1,8 @@
+/* eslint-disable no-console */
 require('dotenv').config();
 
 const Hapi = require('@hapi/hapi');
 const Jwt = require('@hapi/jwt');
-const path = require('path');
 
 // Users
 const users = require('./api/users');
