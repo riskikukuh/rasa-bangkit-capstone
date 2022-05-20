@@ -15,6 +15,7 @@ class UserService {
 
   async addUsers(username, password, email, firstname, lastname) {
     await this.verifyNewUsername(username);
+    await this.verifyNewEmail(email);
     const id = `user-${nanoid(16)}`;
     const hashedPassword = await bcrypt.hash(password, 10);
     const query = {
@@ -41,6 +42,19 @@ class UserService {
 
     if (result.rowCount > 0) {
       throw new InvariantError('Gagal menambahkan user. Username sudah digunakan.');
+    }
+  }
+
+  async verifyNewEmail(email) {
+    const query = {
+      text: 'SELECT email FROM users WHERE email = $1',
+      values: [email],
+    };
+
+    const result = await this._pool.query(query);
+
+    if (result.rowCount > 0) {
+      throw new InvariantError('Gagal menambahkan user. Email sudah digunakan.');
     }
   }
 

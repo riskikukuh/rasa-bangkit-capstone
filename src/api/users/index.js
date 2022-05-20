@@ -4,8 +4,8 @@ const UsersHandler = require('./handler');
 module.exports = {
   name: 'users',
   version: '1.0.0',
-  register: async (server, { service, validator }) => {
-    const usersHandler = new UsersHandler(service, validator);
+  register: async (server, { service, validator, tokenManager }) => {
+    const usersHandler = new UsersHandler(service, validator, tokenManager);
     server.route(routes(usersHandler));
   },
 };

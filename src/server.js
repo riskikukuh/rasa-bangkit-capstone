@@ -9,11 +9,18 @@ const users = require('./api/users');
 const UsersService = require('./services/postgres/UsersService');
 const UsersValidator = require('./validator/users');
 
+// Foods
+const foods = require('./api/foods');
+const FoodsService = require('./services/postgres/FoodsService');
+const FoodsValidator = require('./validator/foods');
+
 // Exceptions
 const ClientError = require('./api/exceptions/ClientError');
+const TokenManager = require('./tokenize/TokenManager');
 
 const init = async () => {
   const usersService = new UsersService();
+  const foodsService = new FoodsService();
 
   const server = Hapi.server({
     port: process.env.PORT,
@@ -49,7 +56,6 @@ const init = async () => {
 
   server.ext('onPreResponse', (request, h) => {
     const { response } = request;
-    console.log(response);
     if (response.isBoom) {
       if (response instanceof ClientError) {
         const newResponse = h.response({
@@ -81,6 +87,13 @@ const init = async () => {
       options: {
         service: usersService,
         validator: UsersValidator,
+        tokenManager: TokenManager,
+      },
+    }, {
+      plugin: foods,
+      options: {
+        service: foodsService,
+        validator: FoodsValidator,
       },
     },
   ]);

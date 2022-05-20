@@ -1,32 +1,30 @@
 const TimeUtil = require('../src/utils/TimeUtil');
 
 exports.up = (pgm) => {
-    pgm.createTable('users', {
+    pgm.createTable("foods", {
         id: {
             type: 'VARCHAR(50)',
             primaryKey: true,
         },
-        username: {
-            type: 'VARCHAR(50)',
-            notNull: true,
-            unique: true,
-        },
-        password: {
+        name: {
             type: 'TEXT',
             notNull: true,
         },
-        email: {
-            type: 'TEXT',
-            notNull: true,
-            unique: true,
-        },
-        firstname: {
+        description: {
             type: 'TEXT',
             notNull: true,
         },
-        lastname: {
+        origin: {
+            type: 'VARCHAR(100)',
+            notNull: true,
+        },
+        province: {
+            type: 'VARCHAR(100)',
+            notNull: true,
+        },
+        image: {
             type: 'TEXT',
-            notNull: false,
+            notNull: true,
         },
         created_at: {
             type: 'BIGINT',
@@ -40,9 +38,9 @@ exports.up = (pgm) => {
         }
     });
 
-    pgm.sql(`INSERT INTO users VALUES ('user-tJzCzhjIfSDPpWco', 'guest', '$2b$10$hUs4Kh4COscJc2JeSH7oE.IDAld1Fz9jXrFLBut57aRip49C8oco2', 'guest@tradifood.id', 'guest', '', ${TimeUtil.getDateNow()})`);
+    pgm.sql(`INSERT INTO foods VALUES ('food-nnKC5j02dhKLqYd7', 'Gudeg', 'Gudeg dari Yogyakarta', 'Yogyakarta', 'Daerah Istimewa Yogyakarta', '', ${TimeUtil.getDateNow()})`);
 };
 
 exports.down = (pgm) => {
-    pgm.dropTable("users");
+    pgm.dropTable("foods");
 };

@@ -8,8 +8,7 @@ const routes = (handler) => [
         multipart: true,
       },
     },
-  },
-  {
+  }, {
     method: 'POST',
     path: '/login',
     handler: handler.loginHandler,
@@ -18,7 +17,7 @@ const routes = (handler) => [
         multipart: true,
       },
     },
-  },
+  }
 ];
 
 module.exports = routes;
