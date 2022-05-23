@@ -3,6 +3,8 @@ require('dotenv').config();
 
 const Hapi = require('@hapi/hapi');
 const Jwt = require('@hapi/jwt');
+const Inert = require('@hapi/inert');
+const path = require('path');
 
 // Users
 const users = require('./api/users');
@@ -18,9 +20,15 @@ const FoodsValidator = require('./validator/foods');
 const ClientError = require('./api/exceptions/ClientError');
 const TokenManager = require('./tokenize/TokenManager');
 
+// Uploads
+const uploads = require('./api/uploads');
+const StorageService = require('./services/storage/StorageService');
+const UploadsValidator = require('./validator/uploads');
+
 const init = async () => {
   const usersService = new UsersService();
   const foodsService = new FoodsService();
+  const storageService = new StorageService(path.resolve(__dirname, 'api/uploads/file/images'));
 
   const server = Hapi.server({
     port: process.env.PORT,
@@ -35,6 +43,8 @@ const init = async () => {
   await server.register([
     {
       plugin: Jwt,
+    }, {
+      plugin: Inert,
     },
   ]);
 
@@ -94,6 +104,12 @@ const init = async () => {
       options: {
         service: foodsService,
         validator: FoodsValidator,
+      },
+    }, {
+      plugin: uploads,
+      options: {
+        service: storageService,
+        validator: UploadsValidator,
       },
     },
   ]);

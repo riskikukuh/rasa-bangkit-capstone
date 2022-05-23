@@ -1,15 +1,15 @@
 const InvariantError = require('../../api/exceptions/InvariantError');
 const {
-  FoodsIdParamsSchema,
+  PostImageHeaderSchema,
 } = require('./schema');
 
-const FoodsValidator = {
-  validateIdFoodParams: (params) => {
-    const validationResult = FoodsIdParamsSchema.validate(params);
+const UploadsValidator = {
+  validateImageHeaders: (headers) => {
+    const validationResult = PostImageHeaderSchema.validate(headers);
     if (validationResult.error) {
       throw new InvariantError(validationResult.error.message);
     }
   },
 };
 
-module.exports = FoodsValidator;
+module.exports = UploadsValidator;

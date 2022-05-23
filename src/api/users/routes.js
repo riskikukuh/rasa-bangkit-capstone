@@ -17,7 +17,7 @@ const routes = (handler) => [
         multipart: true,
       },
     },
-  }
+  },
 ];
 
 module.exports = routes;
