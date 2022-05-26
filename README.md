@@ -1,2 +1,2 @@
-# tradifood-be-bangkit-capstone
+# rasa-be-bangkit-capstone
 Backend for Traditional Food Recognition

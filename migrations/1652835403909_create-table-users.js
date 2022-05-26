@@ -1,4 +1,5 @@
 const TimeUtil = require('../src/utils/TimeUtil');
+const GuestUtil = require('../src/utils/GuestUtil');
 
 exports.up = (pgm) => {
   pgm.createTable('users', {
@@ -40,7 +41,7 @@ exports.up = (pgm) => {
     },
   });
 
-  pgm.sql(`INSERT INTO users VALUES ('user-tJzCzhjIfSDPpWco', 'guest', '$2b$10$hUs4Kh4COscJc2JeSH7oE.IDAld1Fz9jXrFLBut57aRip49C8oco2', 'guest@tradifood.id', 'guest', '', ${TimeUtil.getDateNow()})`);
+  pgm.sql(`INSERT INTO users VALUES ('${GuestUtil.guest().id}', '${GuestUtil.guest().username}', '${GuestUtil.guest().password}', '${GuestUtil.guest().email}', '${GuestUtil.guest().firstname}', '${GuestUtil.guest().lastname}', ${GuestUtil.guest().created_at})`);
 };
 
 exports.down = (pgm) => {

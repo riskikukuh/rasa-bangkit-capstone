@@ -2,6 +2,7 @@ const InvariantError = require('../../api/exceptions/InvariantError');
 const {
   UsersPayloadSchema,
   LoginValidator,
+  AuthTokenValidator,
 } = require('./schema');
 
 const UsersValidator = {
@@ -17,6 +18,12 @@ const UsersValidator = {
       throw new InvariantError(validationResult.error.message);
     }
   },
+  validateAuthToken: (headers) => {
+    const validationResult = AuthTokenValidator.validate(headers);
+    if (validationResult.error) {
+      throw new InvariantError(validationResult.error.message);
+    }
+  }
 };
 
 module.exports = UsersValidator;

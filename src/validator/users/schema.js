@@ -13,7 +13,15 @@ const LoginValidator = Joi.object({
   password: Joi.string().required(),
 });
 
+const AuthTokenValidator = Joi.object({
+  accessToken: [
+    Joi.string().required(),
+    Joi.number(),
+  ],
+});
+
 module.exports = {
   UsersPayloadSchema,
   LoginValidator,
+  AuthTokenValidator,
 };

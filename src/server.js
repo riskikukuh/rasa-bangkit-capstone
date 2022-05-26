@@ -25,9 +25,14 @@ const uploads = require('./api/uploads');
 const StorageService = require('./services/storage/StorageService');
 const UploadsValidator = require('./validator/uploads');
 
+// History
+const history = require('./api/history');
+const HistoryService = require('./services/postgres/HistoryService');
+
 const init = async () => {
   const usersService = new UsersService();
   const foodsService = new FoodsService();
+  const historyService = new HistoryService();
   const storageService = new StorageService(path.resolve(__dirname, 'api/uploads/file/images'));
 
   const server = Hapi.server({
@@ -48,7 +53,7 @@ const init = async () => {
     },
   ]);
 
-  server.auth.strategy('tradifood_jwt', 'jwt', {
+  server.auth.strategy('rasa_jwt', 'jwt', {
     keys: process.env.ACCESS_TOKEN_KEY,
     verify: {
       aud: false,
@@ -108,8 +113,17 @@ const init = async () => {
     }, {
       plugin: uploads,
       options: {
-        service: storageService,
-        validator: UploadsValidator,
+        storageService,
+        historyService,
+        uploadValidator: UploadsValidator,
+        userValidator: UsersValidator,
+        tokenManager: TokenManager,
+      },
+    }, {
+      plugin: history,
+      options: {
+        foodsService,
+        historyService,
       },
     },
   ]);
