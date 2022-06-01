@@ -23,7 +23,7 @@ class HistoryService {
   }
 
   async addHistory(filename, userId, foodId, status) {
-    const historyId = `history-${nanoid(16)}`;
+    const historyId = `analyze-${nanoid(16)}`;
 
     const query = {
       text: 'INSERT INTO history VALUES ($1, $2, $3, $4, $5, $6) RETURNING id',

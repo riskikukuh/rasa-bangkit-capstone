@@ -6,7 +6,6 @@ const routes = (handler) => [
     method: 'POST',
     handler: handler.postUploadImageHandler,
     options: {
-      // auth: 'rasa_jwt',
       payload: {
         allow: 'multipart/form-data',
         multipart: true,

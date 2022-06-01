@@ -26,14 +26,15 @@ class UploadsHandler {
     }
 
     await this._uploadValidator.validateImageHeaders(data.hapi.headers);
-    const filename = await this._storageService.writeFile(data, data.hapi);
-    const history = await this._historyService.addHistory(filename, userId, foodId, status);
+    const url = await this._storageService.writeFile(data, data.hapi);
+    const analyzeId = await this._historyService.addHistory(url, userId, foodId, status);
     return h.response({
       status: 'success',
       message: 'Gambar berhasil diunggah',
       data: {
-        pictureUrl: `http://${process.env.HOST}:${process.env.PORT}/upload/images/${filename}`,
-        historyId: history,
+        // pictureUrl: `http://${process.env.HOST}:${process.env.PORT}/upload/images/${filename}`,
+        pictureUrl: url,
+        analyzeId: analyzeId,
       },
     }).code(201);
   }

@@ -25,6 +25,9 @@ const uploads = require('./api/uploads');
 const StorageService = require('./services/storage/StorageService');
 const UploadsValidator = require('./validator/uploads');
 
+// Cloud Storage
+const { Storage } = require('@google-cloud/storage');
+
 // History
 const history = require('./api/history');
 const HistoryService = require('./services/postgres/HistoryService');
@@ -33,7 +36,10 @@ const init = async () => {
   const usersService = new UsersService();
   const foodsService = new FoodsService();
   const historyService = new HistoryService();
-  const storageService = new StorageService(path.resolve(__dirname, 'api/uploads/file/images'));
+  const projectId = 'rasa-backend';
+  const keyFilename = './assets/auth/rasa-backend-cde838024af2.json';
+  const cloudStorage = new Storage({ projectId, keyFilename });
+  const storageService = new StorageService(path.resolve(__dirname, 'api/uploads/file/images'), cloudStorage);
 
   const server = Hapi.server({
     port: process.env.PORT,
