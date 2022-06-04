@@ -40,7 +40,7 @@ const init = async () => {
   const foodsService = new FoodsService();
   const historyService = new HistoryService();
   const projectId = 'rasa-backend';
-  const keyFilename = './assets/auth/rasa-backend-cde838024af2.json';
+  const keyFilename = './assets/auth/rasa-backend-a540f5b11df0.json';
   const cloudStorage = new Storage({ projectId, keyFilename });
   const storageService = new StorageService(path.resolve(__dirname, 'api/uploads/file/images'), cloudStorage);
 
