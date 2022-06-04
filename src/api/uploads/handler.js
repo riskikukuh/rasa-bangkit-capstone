@@ -13,7 +13,6 @@ class UploadsHandler {
   }
 
   async postUploadImageHandler(request, h) {
-    const { data } = request.payload;
     const status = AnalyzeResultStatus.obtained;
     const foodId = GuestUtil.guest().food_id;
     let userId = GuestUtil.guest().id;
@@ -25,16 +24,18 @@ class UploadsHandler {
       userId = id;
     }
 
-    await this._uploadValidator.validateImageHeaders(data.hapi.headers);
+    await this._uploadValidator.validateImageHeaders(request.payload.data.hapi.headers);
+    await this._uploadValidator.validatePayloadImage(request.payload);
+    const { data } = request.payload;
     const url = await this._storageService.writeFile(data, data.hapi);
     const analyzeId = await this._historyService.addHistory(url, userId, foodId, status);
     return h.response({
       status: 'success',
-      message: 'Gambar berhasil diunggah',
       data: {
         // pictureUrl: `http://${process.env.HOST}:${process.env.PORT}/upload/images/${filename}`,
         pictureUrl: url,
         analyzeId: analyzeId,
+        status: status,
       },
     }).code(201);
   }

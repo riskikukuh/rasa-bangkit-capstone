@@ -28,9 +28,12 @@ const UploadsValidator = require('./validator/uploads');
 // Cloud Storage
 const { Storage } = require('@google-cloud/storage');
 
-// History
-const history = require('./api/history');
+// History Service
 const HistoryService = require('./services/postgres/HistoryService');
+
+// Swagger
+const Vision = require('@hapi/vision');
+const HapiSwagger = require('hapi-swagger');
 
 const init = async () => {
   const usersService = new UsersService();
@@ -51,13 +54,29 @@ const init = async () => {
     },
   });
 
+  const swaggerOptions = {
+    info: {
+      title: 'RASA API Documentation',
+      description: 'This is API for RASA Application. RASA is application for analyze name of the Indonesian traditional food by image',
+      version: '1',
+    },
+    definitionPrefix: 'useLabel',
+    reuseDefinitions: true,
+  };
+
   await server.register([
     {
       plugin: Jwt,
     }, {
       plugin: Inert,
-    },
+    }, {
+      plugin: Vision,
+    }, {
+      plugin: HapiSwagger,
+      options: swaggerOptions
+    }
   ]);
+
 
   server.auth.strategy('rasa_jwt', 'jwt', {
     keys: process.env.ACCESS_TOKEN_KEY,
@@ -106,9 +125,11 @@ const init = async () => {
     {
       plugin: users,
       options: {
-        service: usersService,
+        userService: usersService,
         validator: UsersValidator,
         tokenManager: TokenManager,
+        historyService,
+        foodService: foodsService,
       },
     }, {
       plugin: foods,
@@ -124,12 +145,6 @@ const init = async () => {
         uploadValidator: UploadsValidator,
         userValidator: UsersValidator,
         tokenManager: TokenManager,
-      },
-    }, {
-      plugin: history,
-      options: {
-        foodsService,
-        historyService,
       },
     },
   ]);

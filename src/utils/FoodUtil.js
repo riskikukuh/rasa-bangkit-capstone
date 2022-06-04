@@ -3,10 +3,9 @@ const mapFoodToSimpleFood = (food) => ({
     name: food.name,
     description: food.description,
     origin: food.origin,
-    privince: food.province,
+    province: food.province,
     image: food.image,
     created_at: food.created_at,
 });
-  
+
 module.exports = { mapFoodToSimpleFood };
-  

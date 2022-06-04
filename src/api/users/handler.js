@@ -1,11 +1,16 @@
+const { mapFoodToSimpleFood } = require("../../utils/FoodUtil");
+
 class UsersHandler {
-  constructor(service, validator, tokenManager) {
-    this._service = service;
+  constructor(userService, validator, tokenManager, historyService, foodService) {
+    this._userService = userService;
     this._validator = validator;
     this._tokenManager = tokenManager;
+    this._historyService = historyService;
+    this._foodService = foodService;
 
     this.newUsersHandler = this.newUsersHandler.bind(this);
     this.loginHandler = this.loginHandler.bind(this);
+    this.getHistoryHandler = this.getHistoryHandler.bind(this);
   }
 
   async newUsersHandler(request, h) {
@@ -17,10 +22,9 @@ class UsersHandler {
       firstname,
       lastname,
     } = request.payload;
-    const userId = await this._service.addUsers(username, password, email, firstname, lastname);
+    const userId = await this._userService.addUsers(username, password, email, firstname, lastname);
     return h.response({
       status: 'success',
-      message: 'User berhasil ditambahkan',
       data: {
         userId,
       },
@@ -33,15 +37,34 @@ class UsersHandler {
       username,
       password,
     } = request.payload;
-    const id = await this._service.verifyUserCredentials(username, password);
+    const id = await this._userService.verifyUserCredentials(username, password);
     const accessToken = await this._tokenManager.generateAccessToken({ id });
     return h.response({
       status: 'success',
-      message: 'Login berhasil',
       data: {
         accessToken,
       },
     }).code(200);
+  }
+
+  async getHistoryHandler(request, h) {
+    const { id: userId } = request.auth.credentials;
+    const userHistory = await this._historyService.getHistoryByUserId(userId);
+
+    const history = [];
+
+    for (const single of userHistory) {
+      const { id, food_id, image, status, created_at } = single;
+      const food = mapFoodToSimpleFood(await this._foodService.getFoodById(food_id));
+      history.push({
+        id, image, food, status, created_at,
+      });
+    }
+
+    return h.response({
+      status: 'success',
+      data: history,
+    });
   }
 }
 

@@ -11,9 +11,7 @@ class FoodsHandler {
     const foods = await this._service.getFoods();
     return h.response({
       status: 'success',
-      data: {
-        foods,
-      },
+      data: foods,
     });
   }
 
@@ -23,9 +21,7 @@ class FoodsHandler {
     const food = await this._service.getFoodById(id);
     return h.response({
       status: 'success',
-      data: {
-        food,
-      },
+      data: food,
     });
   }
 }
