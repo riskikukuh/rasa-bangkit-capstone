@@ -1,5 +1,5 @@
-node_modules
-.env
-.prod.env
-src/api/uploads/file
-assets
+# Backend ignored files
+back-end/node_modules
+back-end/.env
+back-end/.prod.env
+back-end/src/api/uploads/file
