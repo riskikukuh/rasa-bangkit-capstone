@@ -6,7 +6,7 @@ class StorageService {
   constructor(folder, cloudStorage) {
     this._folder = folder;
     this._cloudStorage = cloudStorage;
-    this._devBucket = 'rasa-test-bucket-1';
+    this._devBucket = process.env.GCS_DEV_BUCKET_NAME;
 
     if (!fs.existsSync(folder)) {
       fs.mkdirSync(folder, { recursive: true });
