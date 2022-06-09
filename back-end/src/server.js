@@ -40,7 +40,7 @@ const init = async () => {
   const foodsService = new FoodsService();
   const historyService = new HistoryService();
   const projectId = process.env.GCP_PROJECT_ID;
-  const keyFilename = './assets/auth/rasa-backend-a540f5b11df0.json';
+  const keyFilename = process.env.GCS_AUTH_PATH;
   const cloudStorage = new Storage({ projectId, keyFilename });
   const storageService = new StorageService(path.resolve(__dirname, 'api/uploads/file/images'), cloudStorage);
 
@@ -141,6 +141,7 @@ const init = async () => {
       plugin: uploads,
       options: {
         storageService,
+        foodService: foodsService,
         historyService,
         uploadValidator: UploadsValidator,
         userValidator: UsersValidator,

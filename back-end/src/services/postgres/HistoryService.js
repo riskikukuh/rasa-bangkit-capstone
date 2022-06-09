@@ -6,6 +6,8 @@ const {
   Pool,
 } = require('pg');
 
+const NotFoundError = require('../../api/exceptions/NotFoundError');
+
 class HistoryService {
   constructor() {
     this._pool = new Pool();
@@ -22,12 +24,12 @@ class HistoryService {
     return rows;
   }
 
-  async addHistory(filename, userId, foodId, status) {
+  async addHistory(filename, userId, foodId, accuracy, status) {
     const historyId = `analyze-${nanoid(16)}`;
 
     const query = {
-      text: 'INSERT INTO history VALUES ($1, $2, $3, $4, $5, $6) RETURNING id',
-      values: [historyId, userId, foodId, filename, status, +new Date()],
+      text: 'INSERT INTO history VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING id',
+      values: [historyId, userId, foodId, filename, accuracy, status, +new Date()],
     };
 
     const result = await this._pool.query(query);

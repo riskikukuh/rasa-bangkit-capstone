@@ -8,9 +8,9 @@ class StorageService {
     this._cloudStorage = cloudStorage;
     this._devBucket = process.env.GCS_DEV_BUCKET_NAME;
 
-    if (!fs.existsSync(folder)) {
-      fs.mkdirSync(folder, { recursive: true });
-    }
+    // if (!fs.existsSync(folder)) {
+    //   fs.mkdirSync(folder, { recursive: true });
+    // }
   }
 
   writeFile(file, meta) {

@@ -30,6 +30,7 @@ const routes = (handler) => [
               schema: SwaggerUtil.baseResponse(Joi.object({
                 pictureUrl: Joi.string(),
                 analyzeId: Joi.string(),
+                foodId: Joi.string(),
                 status: SwaggerUtil.analyzeResultStatus(),
               }).label('Analyze Result'), message = Joi.string()),
             },

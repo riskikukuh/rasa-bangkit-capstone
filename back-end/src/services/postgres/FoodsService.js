@@ -27,6 +27,21 @@ class FoodsService {
 
     return resultFoods.rows[0];
   }
+
+  async getFoodByName(name) {
+    const query = {
+      text: 'SELECT id FROM foods WHERE name = $1',
+      values: [name],
+    };
+
+    const resultFoods = await this._pool.query(query);
+
+    if (!resultFoods.rowCount) {
+      throw new NotFoundError('Makanan tidak ditemukan');
+    }
+
+    return resultFoods.rows[0].id;
+  }
 }
 
 module.exports = FoodsService;
