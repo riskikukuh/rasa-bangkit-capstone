@@ -10,13 +10,19 @@
         <entry key="..\:/Users/acer/Documents/Capstone/rasa-bangkit-capstone/mobile-app/app/src/main/res/drawable/ic_home2_shad.xml" value="0.151" />
         <entry key="..\:/Users/acer/Documents/Capstone/rasa-bangkit-capstone/mobile-app/app/src/main/res/drawable/ic_home3.xml" value="0.151" />
         <entry key="..\:/Users/acer/Documents/Capstone/rasa-bangkit-capstone/mobile-app/app/src/main/res/drawable/progress_bar.xml" value="0.151" />
+        <entry key="..\:/Users/acer/Documents/Capstone/rasa-bangkit-capstone/mobile-app/app/src/main/res/layout/activity_detail.xml" value="0.259375" />
+        <entry key="..\:/Users/acer/Documents/Capstone/rasa-bangkit-capstone/mobile-app/app/src/main/res/layout/activity_login.xml" value="0.259375" />
         <entry key="..\:/Users/acer/Documents/Capstone/rasa-bangkit-capstone/mobile-app/app/src/main/res/layout/activity_main.xml" value="0.259375" />
+        <entry key="..\:/Users/acer/Documents/Capstone/rasa-bangkit-capstone/mobile-app/app/src/main/res/layout/activity_register.xml" value="0.259375" />
         <entry key="..\:/Users/acer/Documents/Capstone/rasa-bangkit-capstone/mobile-app/app/src/main/res/layout/activity_splash_screen.xml" value="0.259375" />
+        <entry key="..\:/Users/acer/Documents/Capstone/rasa-bangkit-capstone/mobile-app/app/src/main/res/layout/fragment_detail.xml" value="0.259375" />
         <entry key="..\:/Users/acer/Documents/Capstone/rasa-bangkit-capstone/mobile-app/app/src/main/res/layout/fragment_history.xml" value="0.259375" />
-        <entry key="..\:/Users/acer/Documents/Capstone/rasa-bangkit-capstone/mobile-app/app/src/main/res/layout/fragment_home.xml" value="0.176" />
+        <entry key="..\:/Users/acer/Documents/Capstone/rasa-bangkit-capstone/mobile-app/app/src/main/res/layout/fragment_home.xml" value="0.264" />
         <entry key="..\:/Users/acer/Documents/Capstone/rasa-bangkit-capstone/mobile-app/app/src/main/res/layout/fragment_list.xml" value="0.259375" />
         <entry key="..\:/Users/acer/Documents/Capstone/rasa-bangkit-capstone/mobile-app/app/src/main/res/layout/fragment_login.xml" value="0.259375" />
+        <entry key="..\:/Users/acer/Documents/Capstone/rasa-bangkit-capstone/mobile-app/app/src/main/res/layout/fragment_register.xml" value="0.259375" />
         <entry key="..\:/Users/acer/Documents/Capstone/rasa-bangkit-capstone/mobile-app/app/src/main/res/layout/item_page.xml" value="0.259375" />
+        <entry key="..\:/Users/acer/Documents/Capstone/rasa-bangkit-capstone/mobile-app/app/src/main/res/layout/item_row_list.xml" value="0.259375" />
       </map>
     </option>
   </component>

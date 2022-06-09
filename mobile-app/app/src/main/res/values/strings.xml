@@ -1,5 +1,35 @@
 <resources>
     <string name="app_name">Rasa App</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="nama_makanan">namaMakanan</string>
+    <string name="tempat_makanan">tempatMakanan</string>
+
+    <string-array name="data_nama">
+        <item>Ayam Betutu</item>
+        <item>Beberuk Terong</item>
+        <item>Coto Makassar</item>
+        <item>Gudeg</item>
+        <item>Kerak Telor</item>
+        <item>Nasi Pecel</item>
+    </string-array>
+
+    <string-array name="data_tempat">
+        <item>Bali</item>
+        <item>Lombok</item>
+        <item>Makassar</item>
+        <item>DIY Yogyakarta</item>
+        <item>Jakarta</item>
+        <item>Madiun</item>
+    </string-array>
+
+    <integer-array name="data_foto">
+        <item>@drawable/ayam_betutu</item>
+        <item>@drawable/beberuk_terong</item>
+        <item>@drawable/coto_makassar</item>
+        <item>@drawable/gudeg</item>
+        <item>@drawable/kerak_telor</item>
+        <item>@drawable/nasi_pecel</item>
+    </integer-array>
+
 </resources>

@@ -1,4 +1,4 @@
-package com.dicoding.dhimas.rasaapp
+package com.dicoding.dhimas.rasaapp.adapter
 
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
