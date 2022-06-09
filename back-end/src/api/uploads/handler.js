@@ -38,7 +38,7 @@ class UploadsHandler {
     });
 
     let dataPredictError = null;
-    let accuration = 0.0;
+    let accuracy = 0.0;
 
     const resultPredict = await this.rasaPredictImage(url).catch(err => {
       status = AnalyzeResultStatus.error;
@@ -46,11 +46,11 @@ class UploadsHandler {
     });
 
     if (!dataPredictError) {
-      accuration = resultPredict.accuration;
+      accuracy = resultPredict.accuration;
       foodId = await this._foodService.getFoodByName(resultPredict.prediction);
     }
 
-    const analyzeId = await this._historyService.addHistory(url, userId, foodId, accuration, status);
+    const analyzeId = await this._historyService.addHistory(url, userId, foodId, accuracy, status);
 
     if (dataPredictError) {
       return h.response({
@@ -60,6 +60,7 @@ class UploadsHandler {
           pictureUrl: url,
           analyzeId,
           foodId,
+          accuracy,
           status,
         },
       }).code(201);
@@ -72,6 +73,7 @@ class UploadsHandler {
         pictureUrl: url,
         analyzeId: analyzeId,
         foodId: foodId,
+        accuracy,
         status: AnalyzeResultStatus.obtained,
       },
     }).code(201);

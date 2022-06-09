@@ -31,6 +31,7 @@ const routes = (handler) => [
                 pictureUrl: Joi.string(),
                 analyzeId: Joi.string(),
                 foodId: Joi.string(),
+                accuracy: Joi.number(),
                 status: SwaggerUtil.analyzeResultStatus(),
               }).label('Analyze Result'), message = Joi.string()),
             },

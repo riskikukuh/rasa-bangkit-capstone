@@ -15,7 +15,7 @@ class HistoryService {
 
   async getHistoryByUserId(userId) {
     const query = {
-      text: 'SELECT id, food_id, image, status, created_at FROM history WHERE user_id = $1',
+      text: 'SELECT id, food_id, image, accuracy, status, created_at FROM history WHERE user_id = $1',
       values: [userId],
     };
 
