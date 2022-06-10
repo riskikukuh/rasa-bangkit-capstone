@@ -80,7 +80,7 @@ class HomeFragment : Fragment() {
                     val image = fileUri.toFile()
                     val imageName = MultipartBody.Part.createFormData("data", image.name, image.asRequestBody("image/jpg".toMediaTypeOrNull()))
                     val client = ApiConfig.getApiService().analyze(
-                        mapOf(Pair("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InVzZXItZURmc0U2Q1VMemhMdnBGLSIsImlhdCI6MTY1NDg4MzI0MX0.vlOv1gyN34j9d-OoGU8CZipasTlXFFxX88hLP27KVgU")),
+                        mapOf(Pair("Authorization", "Bearer {PUT YOUR TOKEN HERE}")),
                         imageName)
                     client.enqueue(object : Callback<AnalyzeBaseResponse> {
                         override fun onResponse(
