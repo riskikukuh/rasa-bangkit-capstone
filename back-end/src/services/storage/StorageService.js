@@ -17,7 +17,7 @@ class StorageService {
     const filename = +new Date() + '-' + meta.filename.split(' ').join('-');
 
     const bucket = this._cloudStorage.bucket(this._devBucket);
-    const blob = bucket.file(filename);
+    const blob = bucket.file('analyze/' + filename);
     const blobStream = blob.createWriteStream();
 
     return new Promise((resolve, reject) => {
