@@ -99,7 +99,7 @@ const init = async () => {
     if (response.isBoom) {
       if (response instanceof ClientError) {
         const newResponse = h.response({
-          status: 'fail',
+          status: 'error',
           message: response.message,
         });
         newResponse.code(response.statusCode);
