@@ -52,7 +52,7 @@ class HomeFragment : Fragment() {
             try {
                 ImagePicker.with(this)
                     .cameraOnly()
-                    .compress(456)
+                    .compress(950)
                     .saveDir(requireActivity().getExternalFilesDir(Environment.DIRECTORY_PICTURES)!!)
                     .createIntent { intent ->
                         startForProfileImageResult.launch(intent)
