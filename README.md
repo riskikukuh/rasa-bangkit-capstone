@@ -77,7 +77,7 @@ We use 3 service in GCP: Compute Engine, Cloud Storage, and Cloud Function. Comp
 2. Make Cloud Function at least ram 1GB and Trigger is URL, ensure allow unauthentication
 3. Select Python 3.8
 4. Paste that code in main.py
-    ```bash
+    ```python
     import json
     import numpy as np
     from tensorflow.keras.preprocessing import image as image2
