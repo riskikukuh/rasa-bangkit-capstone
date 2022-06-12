@@ -7,28 +7,65 @@
     android:background="@drawable/background_register"
     tools:context=".ui.register.RegisterActivity">
 
-    <TextView
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guide_v1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.075"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guide_v2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.925"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guide_h1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.35"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guide_h2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.050"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guide_h3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.975" />
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:text="@string/header_text_register"
         android:textColor="@color/white"
         android:textSize="30sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar_register"
-        app:layout_constraintVertical_bias="0.25" />
+        android:layout_marginHorizontal="20dp"
+        app:layout_constraintBottom_toTopOf="@id/guide_h1"
+        app:layout_constraintEnd_toStartOf="@id/guide_v2"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@id/guide_v1"
+        app:layout_constraintTop_toBottomOf="@+id/guide_h2"
+        app:layout_constraintVertical_bias="0.45" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="30dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/guide_h1"
+        app:layout_constraintBottom_toTopOf="@id/guide_h3"
+        app:layout_constraintEnd_toStartOf="@id/guide_v2"
+        app:layout_constraintStart_toEndOf="@id/guide_v1">
 
         <TableRow
             android:layout_width="match_parent"
@@ -36,11 +73,11 @@
             tools:ignore="UselessParent">
 
             <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                style="?attr/textInputFilledStyle"
                 android:layout_width="match_parent"
-                android:layout_marginTop="10dp"
                 android:layout_marginEnd="5dp"
                 android:layout_weight="1"
+                app:hintTextColor="@color/black_matte"
                 android:hint="@string/first_name">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -52,11 +89,11 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                style="?attr/textInputFilledStyle"
                 android:layout_width="match_parent"
                 android:layout_marginStart="5dp"
-                android:layout_marginTop="10dp"
                 android:layout_weight="1"
+                app:hintTextColor="@color/black_matte"
                 android:hint="@string/last_name">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -70,11 +107,12 @@
         </TableRow>
 
         <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            style="?attr/textInputFilledStyle"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="10dp"
             android:layout_weight="1"
+            app:hintTextColor="@color/black_matte"
             android:hint="@string/email"
             app:startIconDrawable="@drawable/ic_email_24"
             app:startIconTint="@color/grey">
@@ -88,11 +126,12 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            style="?attr/textInputFilledStyle"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="10dp"
             android:layout_weight="1"
+            app:hintTextColor="@color/black_matte"
             android:hint="@string/username"
             app:startIconDrawable="@drawable/ic_person_24"
             app:startIconTint="@color/grey">
@@ -106,10 +145,11 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            style="?attr/textInputFilledStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            app:hintTextColor="@color/black_matte"
             android:hint="@string/password"
             app:endIconMode="password_toggle"
             app:endIconTint="@color/grey"
@@ -129,7 +169,7 @@
             android:id="@+id/btn_daftar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="15dp"
             android:background="@drawable/shape_button"
             android:text="@string/btn_daftar"
             android:textColor="@color/white"
@@ -179,14 +219,13 @@
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_register"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="?attr/actionBarSize"
-        android:layout_margin="30dp"
         android:background="@null"
         app:layout_collapseMode="pin"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guide_v2"
+        app:layout_constraintStart_toEndOf="@id/guide_v1"
+        app:layout_constraintTop_toBottomOf="@id/guide_h2"
         app:navigationIcon="@drawable/ic_back" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -40,4 +40,5 @@
 
     <!--Home Fragment-->
     <string name="scan">SCAN MAKANAN</string>
+    <string name="belum_ada_history">Belum ada History</string>
 </resources>

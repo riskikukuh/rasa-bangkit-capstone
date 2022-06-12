@@ -25,6 +25,7 @@ import com.dicoding.dhimas.rasaapp.network.ApiConfig
 import com.dicoding.dhimas.rasaapp.ui.detail.DetailActivity
 import com.dicoding.dhimas.rasaapp.ui.error.ErrorActivity
 import com.dicoding.dhimas.rasaapp.ui.list.ListViewModel
+import com.dicoding.dhimas.rasaapp.utils.SessionManager
 import com.dicoding.dhimas.rasaapp.utils.ViewModelFactory
 import com.github.dhaval2404.imagepicker.ImagePicker
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -66,7 +67,7 @@ class HomeFragment : Fragment() {
             try {
                 ImagePicker.with(this)
                     .cameraOnly()
-                    .compress(950)
+                    // .compress(950)
                     .saveDir(requireActivity().getExternalFilesDir(Environment.DIRECTORY_PICTURES)!!)
                     .createIntent { intent ->
                         startForProfileImageResult.launch(intent)
@@ -103,9 +104,14 @@ class HomeFragment : Fragment() {
 
                     val image = fileUri.toFile()
                     val imageName = MultipartBody.Part.createFormData("data", image.name, image.asRequestBody("image/jpg".toMediaTypeOrNull()))
+                    val headers = mutableMapOf<String, String>()
+                    val token = SessionManager.getInstance(requireContext()).accessToken
+                    if (!token.isNullOrEmpty()) {
+                        headers["Authorization"] = "Bearer $token"
+                    }
+
                     val client = ApiConfig.getApiService().analyze(
-                        mapOf(Pair("Authorization", "Bearer {PUT YOUR TOKEN HERE}")),
-                        imageName)
+                        headers, imageName)
                     client.enqueue(object : Callback<AnalyzeBaseResponse> {
                         override fun onResponse(
                             call: Call<AnalyzeBaseResponse>,

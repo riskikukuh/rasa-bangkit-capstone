@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.dicoding.dhimas.rasaapp.ui.detail.DetailViewModel
+import com.dicoding.dhimas.rasaapp.ui.history.HistoryViewModel
 import com.dicoding.dhimas.rasaapp.ui.home.HomeViewModel
 import com.dicoding.dhimas.rasaapp.ui.list.ListViewModel
 
@@ -13,13 +14,15 @@ class ViewModelFactory constructor(private val application: Application) :
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return when {
-//            modelClass.isAssignableFrom(MainViewModel::class.java) -> MainViewModel(application) as T
+            modelClass.isAssignableFrom(HomeViewModel::class.java) -> HomeViewModel(application) as T
 
             modelClass.isAssignableFrom(DetailViewModel::class.java) -> DetailViewModel(application) as T
 
             modelClass.isAssignableFrom(ListViewModel::class.java) -> ListViewModel(application) as T
 
             modelClass.isAssignableFrom(HomeViewModel::class.java) -> HomeViewModel(application) as T
+
+            modelClass.isAssignableFrom(HistoryViewModel::class.java) -> HistoryViewModel(application) as T
 
 //            modelClass.isAssignableFrom(SplashViewModel::class.java) -> SplashViewModel(application) as T
 

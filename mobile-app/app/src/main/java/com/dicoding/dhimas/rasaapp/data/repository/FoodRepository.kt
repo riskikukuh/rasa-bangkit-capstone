@@ -6,6 +6,7 @@ import android.app.Application
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.dicoding.dhimas.rasaapp.data.model.HistoryResponse
 import com.dicoding.dhimas.rasaapp.network.ApiConfig
 import com.dicoding.dhimas.rasaapp.network.ApiService
 import retrofit2.Call
@@ -14,6 +15,35 @@ import retrofit2.Response
 
 class FoodRepository(application: Application) {
     private val api: ApiService = ApiConfig.getApiService()
+
+    fun historyMakanan(headers: Map<String, String>): LiveData<HistoryResponse> {
+        val detail = MutableLiveData<HistoryResponse>()
+
+        api.getHistoryMakanan(headers).enqueue(object : Callback<HistoryResponse> {
+            override fun onResponse(
+                call: Call<HistoryResponse>,
+                response: Response<HistoryResponse>
+            ) {
+                if (response.isSuccessful) {
+                    detail.postValue(response.body())
+                }
+
+                val message = when (response.code()) {
+                    401 -> "${response.code()} : Forbidden"
+                    403 -> "${response.code()} : Bad Request"
+                    404 -> "${response.code()} : Not Found"
+                    else -> "${response.code()} : ${response.body()}"
+                }
+                Log.d("onResponseDetail", message)
+            }
+
+            override fun onFailure(call: Call<HistoryResponse>, t: Throwable) {
+                Log.d("onFailureDetail", t.message!!)
+            }
+        })
+
+        return detail
+    }
 
     fun detailMakanan(id: String): LiveData<DetailMakananResponse> {
         val detail = MutableLiveData<DetailMakananResponse>()

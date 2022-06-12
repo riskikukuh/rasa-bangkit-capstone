@@ -6,6 +6,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.dicoding.dhimas.rasaapp.databinding.ActivityLoginBinding
 import com.dicoding.dhimas.rasaapp.ui.main.MainActivity
+import com.dicoding.dhimas.rasaapp.ui.register.RegisterActivity
 import com.google.android.material.snackbar.Snackbar
 
 class LoginActivity : AppCompatActivity() {
@@ -18,6 +19,11 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.toolbarLogin.setNavigationOnClickListener { onBackPressed() }
+        binding.btnPageDaftar.setOnClickListener {
+            val moveIntent = Intent(this, RegisterActivity::class.java)
+            startActivity(moveIntent)
+        }
+
         initApp()
         setupObserver()
     }

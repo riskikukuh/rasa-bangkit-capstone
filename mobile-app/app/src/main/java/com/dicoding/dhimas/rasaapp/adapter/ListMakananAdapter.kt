@@ -4,9 +4,9 @@ import DataItemMakanan
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.dicoding.dhimas.rasaapp.data.model.DataItemHistory
 import com.dicoding.dhimas.rasaapp.databinding.ItemRowListBinding
 import com.dicoding.dhimas.rasaapp.ui.detail.DetailActivity
 
@@ -36,7 +36,7 @@ class ListMakananAdapter(private val listMakanan: ArrayList<DataItemMakanan>) :
         fun bind(makanan: DataItemMakanan) {
             binding.apply {
                 tvNama.text = makanan.name
-                tvTempat.text = makanan.province
+                tvTempat.text = makanan.origin
                 Glide.with(itemView.context).load(makanan.image).into(imgFoto)
             }
         }

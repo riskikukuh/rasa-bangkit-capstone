@@ -19,7 +19,7 @@
         android:padding="8dp">
 
         <ImageView
-            android:id="@+id/img_foto_register"
+            android:id="@+id/img_foto_history"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_marginStart="8dp"
@@ -31,17 +31,18 @@
             tools:src="@tools:sample/avatars" />
 
         <TextView
-            android:id="@+id/tv_nama_register"
+            android:id="@+id/tv_nama_history"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
-            android:layout_toEndOf="@id/img_foto_register"
+            android:layout_toEndOf="@id/img_foto_history"
             android:textSize="18sp"
             android:textStyle="bold"
+            android:textColor="@color/black_matte"
             card_view:layout_constraintEnd_toEndOf="parent"
-            card_view:layout_constraintStart_toEndOf="@+id/img_foto_register"
-            card_view:layout_constraintTop_toTopOf="@+id/img_foto_register"
+            card_view:layout_constraintStart_toEndOf="@+id/img_foto_history"
+            card_view:layout_constraintTop_toTopOf="@+id/img_foto_history"
             tools:text="@string/nama_makanan" />
 
         <ImageView
@@ -50,20 +51,21 @@
             android:layout_height="wrap_content"
             android:src="@drawable/ic_location_24"
             android:layout_marginTop="8dp"
-            card_view:layout_constraintStart_toStartOf="@+id/tv_nama_register"
-            card_view:layout_constraintTop_toBottomOf="@+id/tv_nama_register" />
+            card_view:layout_constraintStart_toStartOf="@+id/tv_nama_history"
+            card_view:layout_constraintTop_toBottomOf="@+id/tv_nama_history" />
 
         <TextView
-            android:id="@+id/tv_tempat_register"
+            android:id="@+id/tv_tempat_history"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginTop="8dp"
             android:layout_marginLeft="5dp"
             android:textSize="14sp"
-            card_view:layout_constraintBottom_toBottomOf="@+id/img_foto_register"
-            card_view:layout_constraintEnd_toEndOf="@+id/tv_nama_register"
+            android:textColor="@color/black_matte"
+            card_view:layout_constraintBottom_toBottomOf="@+id/img_foto_history"
+            card_view:layout_constraintEnd_toEndOf="@+id/tv_nama_history"
             card_view:layout_constraintStart_toEndOf="@+id/iv_icon_location"
-            card_view:layout_constraintTop_toBottomOf="@+id/tv_nama_register"
+            card_view:layout_constraintTop_toBottomOf="@+id/tv_nama_history"
             card_view:layout_constraintVertical_bias="0.0"
             tools:text="@string/tempat_makanan" />
     </androidx.constraintlayout.widget.ConstraintLayout>
