@@ -1,5 +1,5 @@
 # Rasa BackEnd Bangkit 2022 Capstone
-Backend for Traditional Food Recognition
+Indonesia’s traditional cuisine is one of the cultural heritage from our ancestors. Indonesia’s traditional foods have been utilized as a strategic means to boost Indonesia's tourism industry. Hence, we propose a mobile application aimed to introduce Indonesia’s traditional food to international tourists by using a food detection system. Additionally, the recommendation of the related cuisine restaurant will also be given. Hopefully, this application will be able to increase the economic growth especially in the culinary sector, more job opportunities will be available in the future and the food culture in Indonesia will be more known internationally.
 # API Endpoint
 API Documentation : [Here](http://34.101.98.51/documentation)
 # Tech, Tools, and Frameworks
