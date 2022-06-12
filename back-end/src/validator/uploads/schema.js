@@ -11,7 +11,7 @@ const UploadPayloadSchema = Joi.object({
 });
 
 const AuthorizationSchema = Joi.object({
-  'authorization': Joi.string().optional().description('User access token. Format \'Barear [token]\''),
+  'authorization': Joi.string().optional().description('User access token. Format \'Bearer [token]\''),
 }).unknown();
 
 module.exports = {
