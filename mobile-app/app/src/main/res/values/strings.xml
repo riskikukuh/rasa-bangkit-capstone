@@ -27,6 +27,9 @@
     <string name="name">Name</string>
     <string name="username">Username</string>
     <string name="password">Password</string>
+    <string name="email">Email</string>
+    <string name="last_name">Last Name</string>
+    <string name="first_name">First Name</string>
     <string name="btn_masuk">Login</string>
     <string name="btn_daftar">Register</string>
     <string name="btn_punya_akun">Have Account</string>

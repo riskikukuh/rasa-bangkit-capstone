@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.dicoding.dhimas.rasaapp.ui.detail.DetailViewModel
+import com.dicoding.dhimas.rasaapp.ui.home.HomeViewModel
 import com.dicoding.dhimas.rasaapp.ui.list.ListViewModel
 
 class ViewModelFactory constructor(private val application: Application) :
@@ -17,6 +18,8 @@ class ViewModelFactory constructor(private val application: Application) :
             modelClass.isAssignableFrom(DetailViewModel::class.java) -> DetailViewModel(application) as T
 
             modelClass.isAssignableFrom(ListViewModel::class.java) -> ListViewModel(application) as T
+
+            modelClass.isAssignableFrom(HomeViewModel::class.java) -> HomeViewModel(application) as T
 
 //            modelClass.isAssignableFrom(SplashViewModel::class.java) -> SplashViewModel(application) as T
 

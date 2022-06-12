@@ -1,6 +1,7 @@
 package com.dicoding.dhimas.rasaapp.ui.home
 
 import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.os.Environment
 import android.util.Log
@@ -10,13 +11,21 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.net.toFile
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.dicoding.dhimas.rasaapp.R
+import com.dicoding.dhimas.rasaapp.adapter.ListMakananAdapter
 import com.dicoding.dhimas.rasaapp.data.model.AnalyzeBaseResponse
 import com.dicoding.dhimas.rasaapp.databinding.FragmentHomeBinding
 import com.dicoding.dhimas.rasaapp.network.ApiConfig
+import com.dicoding.dhimas.rasaapp.ui.detail.DetailActivity
+import com.dicoding.dhimas.rasaapp.ui.error.ErrorActivity
+import com.dicoding.dhimas.rasaapp.ui.list.ListViewModel
+import com.dicoding.dhimas.rasaapp.utils.ViewModelFactory
 import com.github.dhaval2404.imagepicker.ImagePicker
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
@@ -29,6 +38,7 @@ class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
+    private lateinit var viewModel: HomeViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,6 +50,8 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        viewModel = obtainViewModel(requireActivity() as AppCompatActivity)
 
         val viewPager = activity?.findViewById<ViewPager2>(R.id.view_pager)
         binding.btnNavList.setOnClickListener {
@@ -74,6 +86,11 @@ class HomeFragment : Fragment() {
         _binding = null
     }
 
+    private fun obtainViewModel(activity: AppCompatActivity): HomeViewModel {
+        val factory = ViewModelFactory.getInstance(activity.application)
+        return ViewModelProvider(activity, factory)[HomeViewModel::class.java]
+    }
+
     private val startForProfileImageResult =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
             val resultCode = result.resultCode
@@ -97,6 +114,19 @@ class HomeFragment : Fragment() {
                             val base = response.body()
                             Log.d("SendAnalyze", "Success: ${response.body()}")
                             Toast.makeText(requireContext(), "Success : ${base?.data}", Toast.LENGTH_LONG).show()
+                            if (base?.data?.status == "obtained"){
+                                base?.data?.foodId?.let {
+                                    viewModel.getDetailMakanan(it).observe(requireActivity()) { detail ->
+                                        val intent = Intent(requireActivity(), DetailActivity::class.java)
+                                        intent.putExtra(DetailActivity.EXTRA_ID, base?.data?.foodId)
+                                        intent.putExtra(DetailActivity.EXTRA_NAME, detail.data.name)
+                                        activity?.startActivity(intent)
+                                    }
+                                }
+                            }else{
+                                val intent = Intent(requireActivity(), ErrorActivity::class.java)
+                                activity?.startActivity(intent)
+                            }
                         }
 
                         override fun onFailure(call: Call<AnalyzeBaseResponse>, t: Throwable) {

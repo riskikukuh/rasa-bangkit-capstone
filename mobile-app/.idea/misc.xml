@@ -20,6 +20,7 @@
         <entry key="..\:/Users/acer/Documents/Capstone/rasa-bangkit-capstone/mobile-app/app/src/main/res/drawable/wave_primary.xml" value="0.1635" />
         <entry key="..\:/Users/acer/Documents/Capstone/rasa-bangkit-capstone/mobile-app/app/src/main/res/drawable/wave_secondary.xml" value="0.1635" />
         <entry key="..\:/Users/acer/Documents/Capstone/rasa-bangkit-capstone/mobile-app/app/src/main/res/layout/activity_detail.xml" value="0.264" />
+        <entry key="..\:/Users/acer/Documents/Capstone/rasa-bangkit-capstone/mobile-app/app/src/main/res/layout/activity_error.xml" value="0.175" />
         <entry key="..\:/Users/acer/Documents/Capstone/rasa-bangkit-capstone/mobile-app/app/src/main/res/layout/activity_login.xml" value="0.2" />
         <entry key="..\:/Users/acer/Documents/Capstone/rasa-bangkit-capstone/mobile-app/app/src/main/res/layout/activity_main.xml" value="0.259375" />
         <entry key="..\:/Users/acer/Documents/Capstone/rasa-bangkit-capstone/mobile-app/app/src/main/res/layout/activity_register.xml" value="0.259375" />
@@ -31,7 +32,7 @@
         <entry key="..\:/Users/acer/Documents/Capstone/rasa-bangkit-capstone/mobile-app/app/src/main/res/layout/fragment_login.xml" value="0.259375" />
         <entry key="..\:/Users/acer/Documents/Capstone/rasa-bangkit-capstone/mobile-app/app/src/main/res/layout/fragment_register.xml" value="0.259375" />
         <entry key="..\:/Users/acer/Documents/Capstone/rasa-bangkit-capstone/mobile-app/app/src/main/res/layout/item_page.xml" value="0.259375" />
-        <entry key="..\:/Users/acer/Documents/Capstone/rasa-bangkit-capstone/mobile-app/app/src/main/res/layout/item_row_history.xml" value="0.259375" />
+        <entry key="..\:/Users/acer/Documents/Capstone/rasa-bangkit-capstone/mobile-app/app/src/main/res/layout/item_row_history.xml" value="0.4" />
         <entry key="..\:/Users/acer/Documents/Capstone/rasa-bangkit-capstone/mobile-app/app/src/main/res/layout/item_row_list.xml" value="0.4" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.1" />
       </map>
