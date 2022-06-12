@@ -72,7 +72,7 @@ We use 3 service in GCP: Compute Engine, Cloud Storage, and Cloud Function. Comp
     pm2 start src/server.js --name "rasa-app"
     ```
     
-# Deployment Mechine Learing
+# Deployment Mechine Learning
 1. Upload model.h5 in Cloud Storage
 2. Make Cloud Function at least ram 1GB and Trigger is URL, ensure allow unauthentication
 3. Select Python 3.8
