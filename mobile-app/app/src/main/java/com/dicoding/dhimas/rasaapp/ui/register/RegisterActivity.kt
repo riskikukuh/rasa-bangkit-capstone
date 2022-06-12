@@ -1,4 +1,4 @@
-package com.dicoding.dhimas.rasaapp
+package com.dicoding.dhimas.rasaapp.ui.register
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

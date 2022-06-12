@@ -4,15 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#004D78"
-    tools:context=".ListFragment">
+    android:background="@color/dark_blue"
+    tools:context=".ui.list.ListFragment">
 
     <TextView
         android:id="@+id/tv_title_fragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="List Food"
+        android:text="@string/nav_list"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="20sp"
@@ -25,7 +25,7 @@
     <ProgressBar
         android:id="@+id/progressBar"
         style="?android:attr/progressBarStyle"
-        android:indeterminateTint="#F4A456"
+        android:indeterminateTint="@color/orange"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="gone"

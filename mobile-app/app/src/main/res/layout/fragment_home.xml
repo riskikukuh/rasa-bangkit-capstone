@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F4A456"
-    tools:context=".HomeFragment">
+    android:background="@color/orange"
+    tools:context=".ui.home.HomeFragment">
 
     <Button
         android:id="@+id/btn_nav_list"
@@ -19,7 +19,7 @@
         android:paddingTop="6dp"
         android:paddingRight="6dp"
         android:paddingBottom="6dp"
-        android:text="LIST"
+        android:text="@string/btn_nav_list"
         android:textColor="@color/white"
         android:textSize="11sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -37,7 +37,7 @@
         android:paddingTop="6dp"
         android:paddingRight="6dp"
         android:paddingBottom="6dp"
-        android:text="HISTORY"
+        android:text="@string/btn_nav_history"
         android:textColor="@color/white"
         android:textSize="11sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -48,7 +48,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="200dp"
-        android:text="SCAN MAKANAN"
+        android:text="@string/scan"
         android:textColor="@color/white"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -63,7 +63,7 @@
         android:layout_marginTop="15dp"
         android:clickable="true"
         android:focusable="true"
-        android:backgroundTint="#004D78"
+        android:backgroundTint="@color/dark_blue"
         android:src="@drawable/ic_camera_72"
         android:tint="@color/white"
         app:fabCustomSize="220dp"
@@ -72,25 +72,26 @@
         app:elevation="50dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        tools:ignore="ContentDescription" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="225dp"
-        android:background="@drawable/ic_home2_shad"
+        android:background="@drawable/wave_secondary"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="75dp"
-        android:background="#004D78"
+        android:background="@color/dark_blue"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:rotation="10"
-        android:background="@drawable/ic_home2"
+        android:background="@drawable/wave_primary"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

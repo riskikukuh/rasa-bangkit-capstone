@@ -1,4 +1,4 @@
-package com.dicoding.dhimas.rasaapp
+package com.dicoding.dhimas.rasaapp.ui.login
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -12,5 +12,6 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        binding.toolbar.setNavigationOnClickListener { onBackPressed() }
     }
 }

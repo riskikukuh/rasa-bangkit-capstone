@@ -1,10 +1,14 @@
-package com.dicoding.dhimas.rasaapp
+package com.dicoding.dhimas.rasaapp.ui.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
+import com.dicoding.dhimas.rasaapp.R
 import com.dicoding.dhimas.rasaapp.adapter.ViewPagerAdapter
 import com.dicoding.dhimas.rasaapp.databinding.ActivityMainBinding
+import com.dicoding.dhimas.rasaapp.ui.history.HistoryFragment
+import com.dicoding.dhimas.rasaapp.ui.home.HomeFragment
+import com.dicoding.dhimas.rasaapp.ui.list.ListFragment
 import me.relex.circleindicator.CircleIndicator3
 
 class MainActivity : AppCompatActivity(){

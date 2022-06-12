@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.dicoding.dhimas.rasaapp.databinding.ItemRowListBinding
+import com.dicoding.dhimas.rasaapp.ui.detail.DetailActivity
 
 class ListMakananAdapter(private val listMakanan: ArrayList<DataItemMakanan>) :
     RecyclerView.Adapter<ListMakananAdapter.ListViewHolder>() {
@@ -21,27 +22,22 @@ class ListMakananAdapter(private val listMakanan: ArrayList<DataItemMakanan>) :
         val makanan = listMakanan[position]
         holder.bind(makanan)
         holder.itemView.setOnClickListener {
-            Toast.makeText(holder.itemView.context, "Kamu memilih " + listMakanan[holder.adapterPosition].name, Toast.LENGTH_SHORT).show()
+            val intent = Intent(holder.itemView.context, DetailActivity::class.java)
+            intent.putExtra(DetailActivity.EXTRA_ID, makanan.id)
+            intent.putExtra(DetailActivity.EXTRA_NAME, makanan.name)
+            holder.itemView.context.startActivity(intent)
         }
     }
 
     override fun getItemCount(): Int = listMakanan.size
 
-    class ListViewHolder(private val binding: ItemRowListBinding) :
+    inner class ListViewHolder(private val binding: ItemRowListBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(makanan: DataItemMakanan) {
             binding.apply {
                 tvNama.text = makanan.name
                 tvTempat.text = makanan.province
                 Glide.with(itemView.context).load(makanan.image).into(imgFoto)
-//                itemView.setOnClickListener {
-//                    Toast.makeText(itemView.context, "Kamu memilih ", Toast.LENGTH_SHORT).show()
-//                    val intent = Intent(itemView.context, DetailActivity::class.java)
-//                    intent.putExtra(DetailActivity.EXTRA_ID, user.id)
-//                    intent.putExtra(DetailActivity.EXTRA_USERNAME, user.login)
-//                    intent.putExtra(DetailActivity.EXTRA_AVATAR, user.avatar_url)
-//                    itemView.context.startActivity(intent)
-//                }
             }
         }
     }
