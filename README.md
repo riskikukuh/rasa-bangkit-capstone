@@ -1,24 +1,38 @@
-# Rasa BackEnd Bangkit 2022 Capstone
+# RASA: Know It Better. Taste It Better
+
+### Rasa BackEnd Bangkit 2022 Capstone
 Indonesia’s traditional cuisine is one of the cultural heritage from our ancestors. Indonesia’s traditional foods have been utilized as a strategic means to boost Indonesia's tourism industry. Hence, we propose a mobile application aimed to introduce Indonesia’s traditional food to international tourists by using a food detection system. Additionally, the recommendation of the related cuisine restaurant will also be given. Hopefully, this application will be able to increase the economic growth especially in the culinary sector, more job opportunities will be available in the future and the food culture in Indonesia will be more known internationally.
-# API Endpoint
+
+### Our Team Member
+| Name  | Bangkit ID | Path |
+| ------------- | ------------- | ------------- |
+| Shinta Kirana S. R. | M2012K1293 | Machine Learning |
+| Maulin Nasari | M2012G1295  | Machine Learning  |
+| Dewi Iswaratika | M7012G1296  | Machine Learning  |
+| Riski Kukuh Wiranata | C2203F1897  | Cloud Computing  |
+| Wahyu Wijaya | C2203F1898  | Cloud Computing |
+| Dhimas Tri Cahya | A2203F1896  | Android  |
+
+### API Endpoint
 API Documentation : [Here](http://34.101.98.51/documentation)
-# Tech, Tools, and Frameworks
+
+### Tech, Tools, and Frameworks
 - [NodeJs] - Evented I/O Backend
 - [HAPI] - Framework to make RestAPI Endpoint 
 - [PostgreSQL] - Database for saving data
 - [JWT] - Method Used to autentication and authorization
 
-# Google Cloud Platfrom
+### Google Cloud Platfrom
 - [VM Instance] - Serving Rest API form NodeJs
 - [Cloud Storage] - Save utilities (Image and model)
 - [Cloud Fucntion] -  Used to predict image food
 
-# How it Works
+### How it Works
 ![](https://i.ibb.co/M88CkMQ/Flowgcp.png)
 
 We use 3 service in GCP: Compute Engine, Cloud Storage, and Cloud Function. Compute engine used for serving Endpoint API, Cloud Storage used to save utilities like uploaded image by user for analyzing, and Cloud Function used to predict. And how the app work is user upload image by hit the endpoint /analyze in compute engine, image will save in cloud storage and after it's done compute engine will send request to cloud function analyze, it will run Machine Learning predicting food name by our model. And then we will get the result of name food picture by cloud function and the result will returned to Compute Engine for as a response analyze.
 
-# Deployment Back-End
+### Deployment Back-End
 1. Clone the back-end project
     ```bash
     git clone https://github.com/riskikukuh/rasa-bangkit-capstone.git rasa-bangkit-capstone
@@ -72,7 +86,7 @@ We use 3 service in GCP: Compute Engine, Cloud Storage, and Cloud Function. Comp
     pm2 start src/server.js --name "rasa-app"
     ```
     
-# Deployment Mechine Learning
+### Deployment Mechine Learning
 1. Upload model.h5 in Cloud Storage
 2. Make Cloud Function at least ram 1GB and Trigger is URL, ensure allow unauthentication
 3. Select Python 3.8
