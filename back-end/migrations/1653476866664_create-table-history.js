@@ -1,7 +1,7 @@
 
 exports.up = pgm => {
     pgm.createType("analyze_result_status", [
-        'obtained', 'not_found', 'error'
+        'obtained', 'error'
     ]);
 
     pgm.createTable('history', {
@@ -15,11 +15,15 @@ exports.up = pgm => {
         },
         food_id: {
             type: 'VARCHAR(50)',
-            notNull: true,
+            notNull: false,
         },
         image: {
             type: 'TEXT',
             notNull: true,
+        },
+        accuracy: {
+            type: 'REAL',
+            notNull: false,
         },
         status: {
             type: 'analyze_result_status',

@@ -7,6 +7,7 @@ const {
 } = require('pg');
 const InvariantError = require('../../api/exceptions/InvariantError');
 const AuthenticationError = require('../../api/exceptions/AuthenticationError');
+const GuestUtil = require('../../utils/GuestUtil');
 
 class UserService {
   constructor() {
@@ -60,8 +61,8 @@ class UserService {
 
   async verifyUserCredentials(username, password) {
     const query = {
-      text: 'SELECT id, password FROM users WHERE username = $1',
-      values: [username],
+      text: 'SELECT id, password FROM users WHERE username = $1 AND id != $2',
+      values: [username, GuestUtil.guest().id],
     };
 
     const result = await this._pool.query(query);

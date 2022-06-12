@@ -1,3 +1,4 @@
+const AnalyzeResultStatus = require("../../utils/AnalyzeResultStatus");
 const { mapFoodToSimpleFood } = require("../../utils/FoodUtil");
 
 class UsersHandler {
@@ -54,10 +55,13 @@ class UsersHandler {
     const history = [];
 
     for (const single of userHistory) {
-      const { id, food_id, image, status, created_at } = single;
-      const food = mapFoodToSimpleFood(await this._foodService.getFoodById(food_id));
+      const { id, food_id, image, accuracy, status, created_at } = single;
+      let food = null;
+      if (status == AnalyzeResultStatus.obtained) {
+        food = mapFoodToSimpleFood(await this._foodService.getFoodById(food_id));
+      }
       history.push({
-        id, image, food, status, created_at,
+        id, image, food, accuracy, status, created_at,
       });
     }
 
