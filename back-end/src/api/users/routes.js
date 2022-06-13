@@ -80,7 +80,7 @@ const routes = (handler) => [
       tags: ['api'],
       validate: {
         headers: Joi.object({
-          'authorization': Joi.string().required().description('User access token. Format \'Barear [token]\''),
+          'authorization': Joi.string().required().description('User access token. Format \'Bearer [token]\''),
         }).unknown(),
       },
       plugins: {
