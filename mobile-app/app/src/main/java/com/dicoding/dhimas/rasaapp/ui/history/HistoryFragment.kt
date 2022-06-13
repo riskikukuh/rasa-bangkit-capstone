@@ -2,17 +2,16 @@ package com.dicoding.dhimas.rasaapp.ui.history
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.dhimas.rasaapp.adapter.HistoryMakananAdapter
-import com.dicoding.dhimas.rasaapp.adapter.ListMakananAdapter
 import com.dicoding.dhimas.rasaapp.data.model.DataItemHistory
 import com.dicoding.dhimas.rasaapp.databinding.FragmentHistoryBinding
 import com.dicoding.dhimas.rasaapp.ui.login.LoginActivity
@@ -52,7 +51,7 @@ class HistoryFragment : Fragment() {
 
     }
 
-    private fun checkToken() {
+    fun checkToken() {
         if (SessionManager.getInstance(requireContext()).accessToken.isNullOrEmpty()){
             isLayoutShow(true)
         }else{

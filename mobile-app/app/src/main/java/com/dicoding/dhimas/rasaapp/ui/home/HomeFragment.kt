@@ -32,7 +32,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class HomeFragment : Fragment() {
+class HomeFragment(onSuccessAnalyze: () -> Unit) : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
@@ -151,6 +151,7 @@ class HomeFragment : Fragment() {
                                         Intent(requireActivity(), ErrorActivity::class.java)
                                     activity?.startActivity(intent)
                                 }
+                                onSuccessAnalyze()
                                 return
                             }
 
@@ -160,6 +161,7 @@ class HomeFragment : Fragment() {
                                     "Ukuran gambar terlalu besar, silahkan coba lagi",
                                     Toast.LENGTH_LONG
                                 ).show()
+                                return
                             }
                             if ((response.code() == 400 || response.code() == 412)) {
                                 val check = response.errorBody() != null
