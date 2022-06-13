@@ -105,9 +105,9 @@ We use 3 service in GCP: Compute Engine, Cloud Storage, and Cloud Function. Comp
     from google.cloud import storage
     def api_predict(requests):
         storage_client = storage.Client()
-        bucket = storage_client.get_bucket('dev-analyze-rasa-application')
-        blob = bucket.blob('model.h5')
-        blob.download_to_filename('/tmp/model.h5')
+        bucket = storage_client.get_bucket('<YOUR BUCKET NAME>')
+        blob = bucket.blob('<MODEL NAME.H5>')
+        blob.download_to_filename('/tmp/<MODEL NAME.H5>')
         if requests.method == "GET":
             valueJson = {
                 "status": "error",
@@ -117,10 +117,9 @@ We use 3 service in GCP: Compute Engine, Cloud Storage, and Cloud Function. Comp
             return result
         elif requests.method == "POST":
             food_list = ['Ayam Betutu','Beberuk Terong','Coto Makassar','Gudeg','Kerak Telor','Mie Aceh','Nasi Kuning','Nasi Pecel','Papeda','Pempek','Peuyeum','Rawon','Rendang','Sate Madura','Serabi','Soto Banjar','Soto Lamongan','Tahu Sumedang']
-            model = load_model('/tmp/model.h5',compile = False)
+            model = load_model('/tmp/<MODEL NAME.H5>',compile = False)
             urlImage = requests.get_json()['url']
             img = imread(urlImage)
-            # img = imread('https://storage.googleapis.com/dev-analyze-rasa-application/pic4.jpg')
             try:
                 img = Image.fromarray(img).resize((224, 224))
                 img = image2.img_to_array(img) / 255.0                  
