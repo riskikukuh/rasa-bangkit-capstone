@@ -1,10 +1,13 @@
 package com.dicoding.dhimas.rasaapp.ui.register
 
 import android.content.Intent
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.WindowManager
 import android.widget.Toast
 import androidx.activity.viewModels
+import com.dicoding.dhimas.rasaapp.R
 import com.dicoding.dhimas.rasaapp.databinding.ActivityRegisterBinding
 import com.dicoding.dhimas.rasaapp.ui.login.LoginActivity
 import com.google.android.material.snackbar.Snackbar
@@ -18,6 +21,14 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        if (Build.VERSION.SDK_INT >= 21) {
+            val window = this.window
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+            window.statusBarColor = this.resources.getColor(R.color.black_matte)
+        }
+
         binding.toolbarRegister.setNavigationOnClickListener { onBackPressed() }
         binding.btnPageLogin.setOnClickListener { onBackPressed() }
 

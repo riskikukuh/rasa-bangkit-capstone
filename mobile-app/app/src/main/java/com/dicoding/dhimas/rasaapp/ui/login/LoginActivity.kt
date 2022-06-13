@@ -1,9 +1,12 @@
 package com.dicoding.dhimas.rasaapp.ui.login
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
+import android.view.WindowManager
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import com.dicoding.dhimas.rasaapp.R
 import com.dicoding.dhimas.rasaapp.databinding.ActivityLoginBinding
 import com.dicoding.dhimas.rasaapp.ui.main.MainActivity
 import com.dicoding.dhimas.rasaapp.ui.register.RegisterActivity
@@ -18,6 +21,14 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        if (Build.VERSION.SDK_INT >= 21) {
+            val window = this.window
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+            window.statusBarColor = this.resources.getColor(R.color.black_matte)
+        }
+
         binding.toolbarLogin.setNavigationOnClickListener { onBackPressed() }
         binding.btnPageDaftar.setOnClickListener {
             val moveIntent = Intent(this, RegisterActivity::class.java)
