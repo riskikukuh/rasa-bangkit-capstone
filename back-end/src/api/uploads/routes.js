@@ -12,7 +12,7 @@ const routes = (handler) => [
         allow: 'multipart/form-data',
         multipart: true,
         output: 'stream',
-        maxBytes: 1000000,
+        maxBytes: 7000000,
       },
       description: 'Analyze food name by image',
       tags: ['api'],
