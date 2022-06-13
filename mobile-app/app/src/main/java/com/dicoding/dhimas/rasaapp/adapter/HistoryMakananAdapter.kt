@@ -21,10 +21,12 @@ class HistoryMakananAdapter(private val historyMakanan: ArrayList<DataItemHistor
         val makanan = historyMakanan[position]
         holder.bind(makanan)
         holder.itemView.setOnClickListener {
-            val intent = Intent(holder.itemView.context, DetailActivity::class.java)
-            intent.putExtra(DetailActivity.EXTRA_ID, makanan.food?.id)
-            intent.putExtra(DetailActivity.EXTRA_NAME, makanan.food?.name)
-            holder.itemView.context.startActivity(intent)
+            if (makanan.food != null) {
+                val intent = Intent(holder.itemView.context, DetailActivity::class.java)
+                intent.putExtra(DetailActivity.EXTRA_ID, makanan.food?.id)
+                intent.putExtra(DetailActivity.EXTRA_NAME, makanan.food?.name)
+                holder.itemView.context.startActivity(intent)
+            }
         }
     }
 
