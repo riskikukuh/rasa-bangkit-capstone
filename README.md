@@ -1,6 +1,6 @@
-# RASA: Know It Better. Taste It Better
+# [C22-PS189] RASA: Know It Better. Taste It Better
 
-### Rasa BackEnd Bangkit 2022 Capstone
+### Overview
 Indonesia’s traditional cuisine is one of the cultural heritage from our ancestors. Indonesia’s traditional foods have been utilized as a strategic means to boost Indonesia's tourism industry. Hence, we propose a mobile application aimed to introduce Indonesia’s traditional food to international tourists by using a food detection system. Additionally, the recommendation of the related cuisine restaurant will also be given. Hopefully, this application will be able to increase the economic growth especially in the culinary sector, more job opportunities will be available in the future and the food culture in Indonesia will be more known internationally.
 
 ### Our Team Member
@@ -12,6 +12,9 @@ Indonesia’s traditional cuisine is one of the cultural heritage from our ances
 | Riski Kukuh Wiranata | C2203F1897  | Cloud Computing  |
 | Wahyu Wijaya | C2203F1898  | Cloud Computing |
 | Dhimas Tri Cahya | A2203F1896  | Android  |
+
+### Machine Learning Dataset
+Here is our dataset : [Rasa Dataset](https://www.kaggle.com/datasets/maulinnasari/indonesianfoods)
 
 ### API Endpoint
 API Documentation : [Here](http://34.101.98.51/documentation)
