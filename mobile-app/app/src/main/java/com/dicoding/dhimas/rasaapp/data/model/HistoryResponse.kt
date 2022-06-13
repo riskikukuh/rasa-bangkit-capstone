@@ -26,7 +26,7 @@ data class DataItemHistory(
 	val id: String,
 
 	@field:SerializedName("food")
-	val food: Food,
+	val food: Food?,
 
 	@field:SerializedName("status")
 	val status: String

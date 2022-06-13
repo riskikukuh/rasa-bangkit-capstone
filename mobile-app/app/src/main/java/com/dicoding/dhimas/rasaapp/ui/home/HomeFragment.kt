@@ -15,22 +15,19 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.net.toFile
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.dicoding.dhimas.rasaapp.R
-import com.dicoding.dhimas.rasaapp.adapter.ListMakananAdapter
 import com.dicoding.dhimas.rasaapp.data.model.AnalyzeBaseResponse
 import com.dicoding.dhimas.rasaapp.databinding.FragmentHomeBinding
 import com.dicoding.dhimas.rasaapp.network.ApiConfig
 import com.dicoding.dhimas.rasaapp.ui.detail.DetailActivity
 import com.dicoding.dhimas.rasaapp.ui.error.ErrorActivity
-import com.dicoding.dhimas.rasaapp.ui.list.ListViewModel
-import com.dicoding.dhimas.rasaapp.utils.SessionManager
 import com.dicoding.dhimas.rasaapp.utils.ViewModelFactory
 import com.github.dhaval2404.imagepicker.ImagePicker
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -67,7 +64,7 @@ class HomeFragment : Fragment() {
             try {
                 ImagePicker.with(this)
                     .cameraOnly()
-                    // .compress(950)
+//                    .compress(2000)
                     .saveDir(requireActivity().getExternalFilesDir(Environment.DIRECTORY_PICTURES)!!)
                     .createIntent { intent ->
                         startForProfileImageResult.launch(intent)
@@ -103,41 +100,96 @@ class HomeFragment : Fragment() {
                     Log.d("BtnScan", "Result : $fileUri")
 
                     val image = fileUri.toFile()
-                    val imageName = MultipartBody.Part.createFormData("data", image.name, image.asRequestBody("image/jpg".toMediaTypeOrNull()))
-                    val headers = mutableMapOf<String, String>()
-                    val token = SessionManager.getInstance(requireContext()).accessToken
-                    if (!token.isNullOrEmpty()) {
-                        headers["Authorization"] = "Bearer $token"
-                    }
-
+                    val imageName = MultipartBody.Part.createFormData(
+                        "data",
+                        image.name,
+                        image.asRequestBody("image/jpg".toMediaTypeOrNull())
+                    )
                     val client = ApiConfig.getApiService().analyze(
-                        headers, imageName)
+                        mapOf(),
+                        imageName
+                    )
                     client.enqueue(object : Callback<AnalyzeBaseResponse> {
                         override fun onResponse(
                             call: Call<AnalyzeBaseResponse>,
                             response: Response<AnalyzeBaseResponse>
                         ) {
-                            val base = response.body()
-                            Log.d("SendAnalyze", "Success: ${response.body()}")
-                            Toast.makeText(requireContext(), "Success : ${base?.data}", Toast.LENGTH_LONG).show()
-                            if (base?.data?.status == "obtained"){
-                                base?.data?.foodId?.let {
-                                    viewModel.getDetailMakanan(it).observe(requireActivity()) { detail ->
-                                        val intent = Intent(requireActivity(), DetailActivity::class.java)
-                                        intent.putExtra(DetailActivity.EXTRA_ID, base?.data?.foodId)
-                                        intent.putExtra(DetailActivity.EXTRA_NAME, detail.data.name)
-                                        activity?.startActivity(intent)
+                            if (response.code() == 201 && response.body() != null) {
+                                val base = response.body()
+                                Log.d("SendAnalyze", "Success: ${response.body()}")
+                                if (base?.data?.status == "obtained") {
+                                    Toast.makeText(
+                                        requireContext(),
+                                        "Berhasil mendapatkan data makanan",
+                                        Toast.LENGTH_LONG
+                                    ).show()
+                                    base.data.foodId?.let {
+                                        viewModel.getDetailMakanan(it)
+                                            .observe(requireActivity()) { detail ->
+                                                val intent = Intent(
+                                                    requireActivity(),
+                                                    DetailActivity::class.java
+                                                )
+                                                intent.putExtra(
+                                                    DetailActivity.EXTRA_ID,
+                                                    base.data.foodId
+                                                )
+                                                intent.putExtra(
+                                                    DetailActivity.EXTRA_NAME,
+                                                    detail.data.name
+                                                )
+                                                activity?.startActivity(intent)
+                                            }
                                     }
+                                } else {
+                                    Toast.makeText(
+                                        requireContext(),
+                                        "Makanan tidak diketahui, silahkan coba kembali",
+                                        Toast.LENGTH_LONG
+                                    ).show()
+                                    val intent =
+                                        Intent(requireActivity(), ErrorActivity::class.java)
+                                    activity?.startActivity(intent)
                                 }
-                            }else{
-                                val intent = Intent(requireActivity(), ErrorActivity::class.java)
-                                activity?.startActivity(intent)
+                                return
                             }
+
+                            if (response.code() == 413) {
+                                Toast.makeText(
+                                    requireContext(),
+                                    "Ukuran gambar terlalu besar, silahkan coba lagi",
+                                    Toast.LENGTH_LONG
+                                ).show()
+                            }
+                            if ((response.code() == 400 || response.code() == 412)) {
+                                val check = response.errorBody() != null
+                                if (check) {
+                                    val jsonError = JSONObject(response.errorBody()!!.string())
+                                    val message = jsonError.getString("message")
+                                        ?: "Gagal menjangkau server, silahkan coba kembali"
+                                    Toast.makeText(requireContext(), message, Toast.LENGTH_LONG)
+                                        .show()
+                                }
+                            } else {
+                                Log.d("AnalyzeLog", "response error body: ${response.errorBody()}")
+                                Toast.makeText(
+                                    requireContext(),
+                                    "Terjadi kesalahan, silahkan coba kembali",
+                                    Toast.LENGTH_LONG
+                                ).show()
+                            }
+
+                            val intent = Intent(requireActivity(), ErrorActivity::class.java)
+                            activity?.startActivity(intent)
                         }
 
                         override fun onFailure(call: Call<AnalyzeBaseResponse>, t: Throwable) {
                             Log.e("SendAnalyze", "Error: ${t.message}")
-                            Toast.makeText(requireContext(), "Error : ${t.message}", Toast.LENGTH_LONG).show()
+                            Toast.makeText(
+                                requireContext(),
+                                "Terjadi kesalahan : ${t.message}",
+                                Toast.LENGTH_LONG
+                            ).show()
                         }
                     })
                 }

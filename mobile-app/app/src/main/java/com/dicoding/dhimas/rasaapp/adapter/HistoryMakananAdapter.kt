@@ -22,8 +22,8 @@ class HistoryMakananAdapter(private val historyMakanan: ArrayList<DataItemHistor
         holder.bind(makanan)
         holder.itemView.setOnClickListener {
             val intent = Intent(holder.itemView.context, DetailActivity::class.java)
-            intent.putExtra(DetailActivity.EXTRA_ID, makanan.food.id)
-            intent.putExtra(DetailActivity.EXTRA_NAME, makanan.food.name)
+            intent.putExtra(DetailActivity.EXTRA_ID, makanan.food?.id)
+            intent.putExtra(DetailActivity.EXTRA_NAME, makanan.food?.name)
             holder.itemView.context.startActivity(intent)
         }
     }
@@ -34,8 +34,8 @@ class HistoryMakananAdapter(private val historyMakanan: ArrayList<DataItemHistor
         RecyclerView.ViewHolder(binding.root) {
         fun bind(makanan: DataItemHistory) {
             binding.apply {
-                tvNamaHistory.text = makanan.food.name
-                tvTempatHistory.text = makanan.food.origin
+                tvNamaHistory.text = makanan.food?.name
+                tvTempatHistory.text = makanan.food?.origin
                 Glide.with(itemView.context).load(makanan.image).into(imgFotoHistory)
             }
         }
