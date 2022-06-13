@@ -39,8 +39,8 @@ const init = async () => {
   const usersService = new UsersService();
   const foodsService = new FoodsService();
   const historyService = new HistoryService();
-  const projectId = 'rasa-backend';
-  const keyFilename = './assets/auth/rasa-backend-cde838024af2.json';
+  const projectId = process.env.GCP_PROJECT_ID;
+  const keyFilename = process.env.GCS_AUTH_PATH;
   const cloudStorage = new Storage({ projectId, keyFilename });
   const storageService = new StorageService(path.resolve(__dirname, 'api/uploads/file/images'), cloudStorage);
 
@@ -99,7 +99,7 @@ const init = async () => {
     if (response.isBoom) {
       if (response instanceof ClientError) {
         const newResponse = h.response({
-          status: 'fail',
+          status: 'error',
           message: response.message,
         });
         newResponse.code(response.statusCode);
@@ -141,6 +141,7 @@ const init = async () => {
       plugin: uploads,
       options: {
         storageService,
+        foodService: foodsService,
         historyService,
         uploadValidator: UploadsValidator,
         userValidator: UsersValidator,

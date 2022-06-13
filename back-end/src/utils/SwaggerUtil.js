@@ -54,7 +54,7 @@ const SwaggerUtil = {
         }).label('Token Invalid Model');
     },
     analyzeResultStatus: () => {
-        return Joi.string().valid('obtained', 'not_found', 'error').label('Analyze Result Status');
+        return Joi.string().valid('obtained', 'error').label('Analyze Result Status');
     },
     makeArray: (items) => {
         return Joi.array().items(items);
