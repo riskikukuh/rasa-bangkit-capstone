@@ -4,3 +4,20 @@ back-end/.env
 back-end/.prod.env
 back-end/src/api/uploads/file
 back-end/assets
+
+# Mobile App ignored files
+mobile-app/*.iml
+mobile-app/.gradle
+mobile-app/local.properties
+mobile-app/.idea/caches
+mobile-app/.idea/libraries
+mobile-app/.idea/modules.xml
+mobile-app/.idea/workspace.xml
+mobile-app/.idea/navEditor.xml
+mobile-app/.idea/assetWizardSettings.xml
+mobile-app/.DS_Store
+mobile-app/build
+mobile-app/captures
+mobile-app/.externalNativeBuild
+mobile-app/.cxx
+mobile-app/local.properties

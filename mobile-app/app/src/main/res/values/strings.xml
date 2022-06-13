@@ -1,0 +1,44 @@
+<resources>
+    <string name="app_name">RASA</string>
+    <string name="name_app_uppercase">RASA</string>
+    <string name="slogan">Know it Better, Taste it Better</string>
+    <string name="description_app">Aplikasi tentang informasi makanan tradisional</string>
+
+    <string name="nama_makanan">namaMakanan</string>
+    <string name="tempat_makanan">tempatMakanan</string>
+    <string name="strip">-</string>
+
+    <!--Navigation-->
+    <string name="nav_history">History</string>
+    <string name="nav_list">List Food</string>
+    <string name="btn_nav_list">LIST</string>
+    <string name="btn_nav_history">HISTORY</string>
+
+    <!--Detail Activity-->
+    <string name="detail_nama_makanan">Nama Makanan</string>
+    <string name="detail_provinsi">Jawa Tengah</string>
+    <string name="detail_origin">Yogyakarta</string>
+    <string name="detail_description">Gudeg is a traditional Javanese dish from Yogyakarta and Central Java, Indonesia. Gudeg is made from young unripe jack fruit stewed for several hours with palm sugar, and coconut milk. Additional spices include garlic, shallot, candlenut, coriander seed, galangal, bay leaves, and teak leaves, the latter giving a reddish-brown color to the dish. It is often described as \'green jack fruit sweet stewDeskripsi\'</string>
+    <string name="detail_btn_cari_tempat">Cari Tempat</string>
+
+    <!--Login & Register Activity-->
+    <string name="header_text_login">Hello Again</string>
+    <string name="header_text_register">Create Account</string>
+    <string name="name">Name</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="email">Email</string>
+    <string name="last_name">Last Name</string>
+    <string name="first_name">First Name</string>
+    <string name="btn_masuk">Login</string>
+    <string name="btn_daftar">Register</string>
+    <string name="btn_punya_akun">Have Account</string>
+    <string name="or">OR</string>
+
+    <!--History Fragment-->
+    <string name="need_login">Perlu login terlebih dahulu.</string>
+
+    <!--Home Fragment-->
+    <string name="scan">SCAN MAKANAN</string>
+    <string name="belum_ada_history">Belum ada History</string>
+</resources>
